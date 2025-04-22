@@ -1,0 +1,23 @@
+class Solution {
+  public:
+    int floorSqrt(int n) {
+        if (n == 0 || n == 1)
+            return n;
+
+        int low = 1, high = n, ans = 0;
+
+        while (low <= high) {
+            long long mid = (low + high) / 2;
+            if (mid * mid == n)
+                return mid;
+            if (mid * mid < n) {
+                ans = mid;       // potential answer
+                low = mid + 1;   // look in right half
+            } else {
+                high = mid - 1;  // look in left half
+            }
+        }
+
+        return ans;
+    }
+};
